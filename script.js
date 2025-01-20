@@ -1,37 +1,38 @@
-document.getElementById("submitBtn").addEventListener("click", function() {
-    const dropdowns = document.querySelectorAll(".reflection-dropdown");
-    let allSelected = true;
-    const selections = [];
+document.getElementById("submitBtn").addEventListener("click", function () {
+    const functionValue = document.getElementById("Function").value;
+    const customerValue = document.getElementById("Customers").value;
 
-    dropdowns.forEach(dropdown => {
-        const selectedValue = dropdown.value;
-        if (!selectedValue) {
-            allSelected = false;
-            alert("Please make a selection in all dropdowns.");
-            return;
-        }
-        selections.push(selectedValue);
-    });
+    const reflections = {
+        MakeItEasy: document.getElementById("MakeItEasy").value,
+        BeTrustworthy: document.getElementById("BeTrustworthy").value,
+        KnowMe: document.getElementById("KnowMe").value,
+        BringValue: document.getElementById("BringValue").value
+    };
 
-    if (allSelected) {
-        // Log selections to the console
-        console.log("User selections:", selections);
-        
-        // Display a thank-you message to the user
-        alert("Thank you for submitting your reflections!");
-
-        // Store selections in local storage (optional)
-        localStorage.setItem("reflections", JSON.stringify(selections));
-
-        // Show the success message
-        document.getElementById("successMessage").style.display = "block";
-
-        // Optional: Communicate with Storyline by setting a variable
-        // This requires a variable in Storyline, e.g., `UserSelections`
-        if (window.parent) {
-            window.parent.SetPlayerVariable("UserSelections", JSON.stringify(selections));
-        }
+    if (!functionValue || !customerValue || Object.values(reflections).some(value => !value)) {
+        alert("Please complete all fields before submitting.");
+        return;
     }
+
+    // Create the content for the PDF
+    const pdfContent = `
+    CX Principles Reflection\n
+    Primary Function: ${functionValue}
+    Primary Customers: ${customerValue}\n
+    Reflections:
+    - Make It Easy: ${reflections.MakeItEasy}
+    - Be Trustworthy: ${reflections.BeTrustworthy}
+    - Know Me: ${reflections.KnowMe}
+    - Bring Value: ${reflections.BringValue}
+    `;
+
+    // Generate a downloadable Blob
+    const blob = new Blob([pdfContent], { type: "text/plain;charset=utf-8" });
+    const downloadLink = document.createElement("a");
+    downloadLink.href = URL.createObjectURL(blob);
+    downloadLink.download = "CX_Reflections.txt"; // Use .txt or convert to PDF with a library if needed
+    downloadLink.click();
+
+    // Show success message
+    document.getElementById("successMessage").style.display = "block";
 });
-
-
