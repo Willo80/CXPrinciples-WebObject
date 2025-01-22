@@ -14,25 +14,20 @@ document.getElementById("submitBtn").addEventListener("click", function () {
         return;
     }
 
-    // Create the content for the PDF
-    const pdfContent = `
-    CX Principles Reflection\n
+    // Create email
+    const emailBody = `
     Primary Function: ${functionValue}
-    Primary Customers: ${customerValue}\n
+    Primary Customers: ${customerValue}
+
     Reflections:
     - Make It Easy: ${reflections.MakeItEasy}
     - Be Trustworthy: ${reflections.BeTrustworthy}
     - Know Me: ${reflections.KnowMe}
     - Bring Value: ${reflections.BringValue}
-    `;
+`;
 
-    // Generate a downloadable Blob
-    const blob = new Blob([pdfContent], { type: "text/plain;charset=utf-8" });
-    const downloadLink = document.createElement("a");
-    downloadLink.href = URL.createObjectURL(blob);
-    downloadLink.download = "CX_Reflections.txt"; // Use .txt or convert to PDF with a library if needed
-    downloadLink.click();
+window.location.href = `mailto:?subject=CX Reflections&body=${encodeURIComponent(emailBody)}`;
 
-    // Show success message
-    document.getElementById("successMessage").style.display = "block";
+// Optional: Display a success message
+document.getElementById("successMessage").style.display = "block";
 });
