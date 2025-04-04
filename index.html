@@ -60,6 +60,28 @@
             background-color: #f0f0f0;
         }
 
+/* Textarea Styling */
+textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 12px;
+    color: #3F3F3F;
+    border: 1px solid #CF451C;
+    border-radius: 4px;
+    background-color: #fefefe;
+    margin-bottom: 20px;
+    resize: vertical; /* Allow resizing vertically only */
+    line-height: 1.5;
+    min-height: 80px;
+    box-sizing: border-box;
+}
+
+textarea:focus {
+    border-color: #071D49;
+    background-color: #f9f9f9;
+    outline: none;
+}
+
         /* Title Styling */
         h2 {
             color: #CF451C;
@@ -112,7 +134,7 @@
 <body>
     <div id="dropdownContainer">
         <h2>Reflect on Your CX Approach</h2>
-<h4>At AbbVie, regardless of the function you work in, we all serve customers every day—whether they are healthcare professionals (HCPs), patients, government bodies, or internal colleagues. To help you apply the CX principles to your specific role and the main customer group you support, please select the description of each principle that best aligns with your function and customer group. <span style="color: #CF451C; font-weight: bold;">Click submit to email a copy of this reflection to yourself.</h4>
+<h4>At AbbVie, regardless of the function you work in, we all serve customers every day—whether they are healthcare professionals (HCPs), patients, government bodies, or internal colleagues. To help you apply the CX principles to your role and the customers you support, list one recent example where you have demonstrated each principle.<span style="color: #CF451C; font-weight: bold;"> Click submit to email a copy of this reflection to yourself.</h4>
         <!-- New Section: Primary Function and Customers -->
         <label for="Function">What is your primary function?</label>
         <select id="Function">
@@ -120,6 +142,15 @@
             <option value="Sales">Sales</option>
             <option value="Marketing">Marketing</option>
             <option value="Operations">Operations</option>
+            <option value="Medical">Medical</option>
+            <option value="BTS">BTS</option>
+            <option value="Development Operations">Development Operations</option>
+            <option value="External affairs and Patient Experience">External affairs and Patient Experience</option>
+            <option value="CEX">CEX</option>
+            <option value="Market Access">Market Access</option>
+            <option value="Regulatory">Regulatory</option>
+            <option value="Finance">Finance</option>
+            <option value="HR">HR</option>
             <option value="Customer Support">Customer Support</option>
             <option value="Other">Other</option>
         </select>
@@ -134,41 +165,21 @@
             <option value="Internal">Internal Colleagues</option>
         </select>
 
-        <!-- Dropdown Options -->
+        <!-- Free text reflections -->
         <label for="MakeItEasy">Make It Easy</label>
-        <select id="MakeItEasy" onchange="window.parent.GetPlayer().SetVar('MakeItEasyChoice', this.value)">
-            <option value="">Select an option</option>
-            <option value="I provide clear, step-by-step guidance.">I provide clear, step-by-step guidance.</option>
-            <option value="I simplify complex information into easy-to-follow steps.">I simplify complex information into easy-to-follow steps.</option>
-            <option value="I regularly check in to make sure they understand.">I regularly check in to make sure they understand.</option>
-        </select>
+        <textarea id="MakeItEasy" rows="3" placeholder="Describe how you make things easier for customers..."></textarea>
 
         <label for="BeTrustworthy">Be Trustworthy</label>
-        <select id="BeTrustworthy" onchange="window.parent.GetPlayer().SetVar('BeTrustworthyChoice', this.value)">
-            <option value="">Select an option</option>
-            <option value="I follow up on every commitment I make.">I follow up on every commitment I make.</option>
-            <option value="I communicate honestly, even if there are challenges.">I communicate honestly, even if there are challenges.</option>
-            <option value="I am consistent in how I respond to customer needs.">I am consistent in how I respond to customer needs.</option>
-        </select>
+        <textarea id="BeTrustworthy" rows="3" placeholder="Describe how you demonstrate trustworthiness..."></textarea>
 
         <label for="KnowMe">Know Me</label>
-        <select id="KnowMe" onchange="window.parent.GetPlayer().SetVar('KnowMeChoice', this.value)">
-            <option value="">Select an option</option>
-            <option value="I ask questions to understand their specific context.">I ask questions to understand their specific context.</option>
-            <option value="I personalise my responses based on what they tell me.">I personalise my responses based on what they tell me.</option>
-            <option value="I research their background to tailor my approach.">I research their background to tailor my approach.</option>
-        </select>
+        <textarea id="KnowMe" rows="3" placeholder="Describe how you understand and respond to individual customer needs..."></textarea>
 
         <label for="BringValue">Bring Value</label>
-        <select id="BringValue" onchange="window.parent.GetPlayer().SetVar('BringValueChoice', this.value)">
-            <option value="">Select an option</option>
-            <option value="I provide information that’s directly relevant to their needs.">I provide information that’s directly relevant to their needs.</option>
-            <option value="I offer solutions that save them time and effort.">I offer solutions that save them time and effort.</option>
-            <option value="I leverage my expertise to address their unique challenges.">I leverage my expertise to address their unique challenges.</option>
-        </select>
+        <textarea id="BringValue" rows="3" placeholder="Describe how you provide meaningful value to customers..."></textarea>
 
         <!-- Submit Button -->
-        <button id="submitBtn">Submit</button>
+        <button id="submitBtn">Email My Reflections</button>
     </div>
 
     <!-- Link to External JavaScript File -->
